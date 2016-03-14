@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SmsCodeHelper</string>
+    <string name="verification">Verification Code:</string>
+    <string name="hint">.The verification code has been copy to ClipBoard.</string>
+</resources>
