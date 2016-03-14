@@ -16,8 +16,8 @@ public class L {
         }
     }
 
-    public static void l(String message){
-        l("TAG",message,Debug_Mode);
+    public static void l(String message) {
+        l("TAG", message, Debug_Mode);
     }
 
 }

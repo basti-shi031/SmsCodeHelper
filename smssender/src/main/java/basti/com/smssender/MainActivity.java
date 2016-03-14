@@ -1,7 +1,7 @@
 package basti.com.smssender;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,23 +21,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        EventHandler eh=new EventHandler(){
+        EventHandler eh = new EventHandler() {
 
             @Override
             public void afterEvent(int event, int result, Object data) {
 
-                Log.i("onCreate","EventHandler");
+                Log.i("onCreate", "EventHandler");
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     //回调完成
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                         //提交验证码成功
-                    }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         //获取验证码成功
-                    }else if (event ==SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES){
+                    } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
                         //返回支持发送验证码的国家列表
                     }
-                }else{
-                    ((Throwable)data).printStackTrace();
+                } else {
+                    ((Throwable) data).printStackTrace();
                 }
             }
         };
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String phone = et_phone.getText().toString();
 
-                SMSSDK.getVerificationCode("86",phone);
+                SMSSDK.getVerificationCode("86", phone);
             }
         });
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -23,10 +22,9 @@ public class SmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.i("onReceive","onReceive");
         Object[] pdus = (Object[]) intent.getExtras().get("pdus");
 
-        for(Object o : pdus){
+        for (Object o : pdus) {
             byte[] sms = (byte[]) o;
 
             SmsMessage smsMessage = SmsMessage.createFromPdu(sms, "3gpp");
@@ -37,20 +35,15 @@ public class SmsReceiver extends BroadcastReceiver {
             L.l(messagebody + "   " + originatingAddress + "   " + String.valueOf(date));
 
             //判断是否是私人短信
-            if (!StringUtils.isPersonalMobile(originatingAddress)){
-                L.l("check1");
+            if (!StringUtils.isPersonalMobile(originatingAddress)) {
                 String verification = StringUtils.getVerification(messagebody);
 
                 //如果返回得到验证码，则说明验证码已经得到
-                if (!TextUtils.isEmpty(verification)){
-                    L.l("check2");
-                    Toast.makeText(context,context.getResources().getString(R.string.verification) + verification + context.getResources().getString(R.string.hint),Toast.LENGTH_LONG).show();
-                    Toast.makeText(context,context.getResources().getString(R.string.verification) + verification + context.getResources().getString(R.string.hint),Toast.LENGTH_LONG).show();
+                if (!TextUtils.isEmpty(verification)) {
+                    Toast.makeText(context, context.getResources().getString(R.string.verification) + verification + context.getResources().getString(R.string.hint), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getResources().getString(R.string.verification) + verification + context.getResources().getString(R.string.hint), Toast.LENGTH_LONG).show();
                 }
             }
         }
-
-
-        Log.i("SMS Content","");
     }
 }
