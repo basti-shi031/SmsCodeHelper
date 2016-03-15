@@ -1,6 +1,8 @@
 package basti.com.smscodehelper.receiver;
 
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
@@ -18,6 +20,8 @@ import basti.com.smscodehelper.utils.StringUtils;
  * Created by Bowen on 2016-03-14.
  */
 public class SmsReceiver extends BroadcastReceiver {
+
+    ClipboardManager clipboardManager;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -40,6 +44,10 @@ public class SmsReceiver extends BroadcastReceiver {
 
                 //如果返回得到验证码，则说明验证码已经得到
                 if (!TextUtils.isEmpty(verification)) {
+                    clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clipData = ClipData.newPlainText("text",verification);
+                    clipboardManager.setPrimaryClip(clipData);
+
                     Toast.makeText(context, context.getResources().getString(R.string.verification) + verification + context.getResources().getString(R.string.hint), Toast.LENGTH_LONG).show();
                     Toast.makeText(context, context.getResources().getString(R.string.verification) + verification + context.getResources().getString(R.string.hint), Toast.LENGTH_LONG).show();
                 }

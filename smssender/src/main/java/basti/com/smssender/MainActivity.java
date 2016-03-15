@@ -12,9 +12,8 @@ import cn.smssdk.SMSSDK;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button bt_send;
+    private Button bt_send,bt_copy;
     private EditText et_phone;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterEvent(int event, int result, Object data) {
 
-                Log.i("onCreate", "EventHandler");
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     //回调完成
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
@@ -59,12 +57,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        bt_copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phone = et_phone.getText().toString();
+            }
+        });
+
     }
 
     private void initView() {
 
         bt_send = (Button) findViewById(R.id.send);
         et_phone = (EditText) findViewById(R.id.phone);
-
+        bt_copy = (Button) findViewById(R.id.copy);
     }
 }

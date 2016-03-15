@@ -22,4 +22,12 @@
         android:text="send"
         android:id="@+id/send"
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/send"
+        android:text="copy"
+        android:id="@+id/copy"
+        />
 </RelativeLayout>
